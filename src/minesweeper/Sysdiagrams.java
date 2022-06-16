@@ -15,6 +15,9 @@ import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -22,6 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "sysdiagrams")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Sysdiagrams.findAll", query = "SELECT s FROM Sysdiagrams s"),
     @NamedQuery(name = "Sysdiagrams.findByName", query = "SELECT s FROM Sysdiagrams s WHERE s.name = :name"),
@@ -32,9 +36,12 @@ public class Sysdiagrams implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
     @Column(name = "name")
     private String name;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "principal_id")
     private int principalId;
     @Id

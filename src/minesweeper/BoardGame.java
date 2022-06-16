@@ -17,6 +17,9 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -24,6 +27,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "boardGame")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "BoardGame.findAll", query = "SELECT b FROM BoardGame b"),
     @NamedQuery(name = "BoardGame.findById", query = "SELECT b FROM BoardGame b WHERE b.id = :id"),
@@ -39,12 +43,15 @@ public class BoardGame implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "rows")
     private int rows;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "columns")
     private int columns;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "mines")
     private int mines;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idborad")
@@ -98,6 +105,7 @@ public class BoardGame implements Serializable {
         this.mines = mines;
     }
 
+    @XmlTransient
     public List<BoomBoard> getBoomBoardList() {
         return boomBoardList;
     }
@@ -106,6 +114,7 @@ public class BoardGame implements Serializable {
         this.boomBoardList = boomBoardList;
     }
 
+    @XmlTransient
     public List<Steps> getStepsList() {
         return stepsList;
     }

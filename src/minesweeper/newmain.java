@@ -6,7 +6,7 @@ package minesweeper;
 
 import java.time.DayOfWeek;
 import java.time.temporal.TemporalAdjusters;
-import minesweeper.Minesweeper;
+
 import java.util.Scanner;
 
 /**
@@ -38,7 +38,7 @@ public class newmain {
             password = sc.nextInt();
         } else if (answer.equalsIgnoreCase("yes")) {
             System.out.println("enter username:");
-            userName =sc.next();
+            userName = sc.next();
         }
         System.out.println("enter number of rows:");
         rowCount = sc.nextInt();
@@ -48,6 +48,7 @@ public class newmain {
         minesCount = sc.nextInt();
         try {
             Minesweeper g1 = new Minesweeper(minesCount, rowCount, columnsCount);
+          //  gui g2 = new gui();
             g1.print();
             while (g1.getGameAlive() == true) {
 

@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,6 +25,7 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "steps")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Steps.findAll", query = "SELECT s FROM Steps s"),
     @NamedQuery(name = "Steps.findById", query = "SELECT s FROM Steps s WHERE s.id = :id"),
@@ -37,9 +40,11 @@ public class Steps implements Serializable {
     @Column(name = "id")
     private Integer id;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "row")
     private int row;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "col")
     private int col;
     @JoinColumn(name = "idboard", referencedColumnName = "id")
